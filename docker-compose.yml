@@ -1,0 +1,16 @@
+version: '3.0'
+
+services:
+  localstack:
+    image: localstack/localstack:latest
+    ports:
+      - "4566:4566"  # Main port for LocalStack services
+      - "4571:4571"  # Additional port if needed
+    environment:
+      - DEBUG=1
+      - DATA_DIR=/var/lib/localstack
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - "./localstack-data:/var/lib/localstack"  # Persistent data storage
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
